@@ -1,0 +1,5 @@
+#!/bin/sh
+
+psql -U postgres portal -f ../schema.sql
+
+psql -U postgres portal -c "Select count(*) from service_registry;"
