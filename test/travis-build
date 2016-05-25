@@ -1,5 +1,12 @@
 #!/bin/sh
 
-psql -U postgres portal -f schema.sql
+# Can we add a separate user to read/write the portal db?
+# Assign that user a password, so things mimic our code
+#      pretty well? Or do we need to worry about that?
 
-psql -U postgres portal -c "Select count(*) from service_registry;"
+# Then on to running with SQLAlchemy so we know the clearinghouse
+# services will run.
+
+psql -U ch geni -f schema.sql
+
+psql -U ch geni -c "Select count(*) from service_registry;"

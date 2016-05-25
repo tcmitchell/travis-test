@@ -12,6 +12,10 @@ before_script:
   - wget https://github.com/GENI-NSF/geni-tools/archive/v2.10.tar.gz -O /tmp/geni-tools.tar.gz
   - tar -xf /tmp/geni-tools.tar.gz -C /tmp
   - export PYTHONPATH=$PYTHONPATH:/tmp/geni-tools-2.10/src
-  - psql -c 'create database portal;' -U postgres
+  - psql -c 'create database geni;' -U postgres
+  - psql -c 'create user ch password secret;' -U postgres
+  - psql -c 'grant all on database geni to ch;' -U postgres
+  - echo 'localhost:*:geni:ch:secret' > ~/.pgpass
+  - chmod 0600 ~/.pgpass
 script:
   - test/travis-build
