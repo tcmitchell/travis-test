@@ -13,7 +13,7 @@ before_script:
   - tar -xf /tmp/geni-tools.tar.gz -C /tmp
   - export PYTHONPATH=$PYTHONPATH:/tmp/geni-tools-2.10/src
   - psql -c 'create database geni;' -U postgres
-  - psql -c 'create user ch password "secret";' -U postgres
+  - psql -c 'create user ch with password "secret";' -U postgres
   - psql -c 'grant all on database geni to ch;' -U postgres
   - echo 'localhost:*:geni:ch:secret' > ~/.pgpass
   - chmod 0600 ~/.pgpass
